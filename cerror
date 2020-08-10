@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+from subprocess import check_output, STDOUT, CalledProcessError
+import argparse
+
+
+class File:
+    def __init__(self, filename, compiler):
+        self.filename = filename
+        self.compiler = compiler
+
+    def run(self):
+        try:
+            check_output([self.compiler, self.filename], stderr=STDOUT)
+        except CalledProcessError as e:
+            return len(e.output.decode("utf-8"))
+
+    def size(self):
+        length = check_output(f"cat {self.filename}", shell=True)
+        return len(length.decode("utf-8"))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", help="Compiler name")
+    parser.add_argument("-f", help="File name")
+    args = parser.parse_args()
+    test = File(args.f, args.c)
+    print(test.run() / test.size())
