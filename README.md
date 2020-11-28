@@ -1,6 +1,6 @@
 # CError
 Run cerror on a source code file of a compiled language to get the length of the outputted error compared to the filesize.
-Some people try to get the largest error with the smallest file, this scripts gives you a score for this.
+Some people try to get the largest error with the smallest file, this script gives you a score for this.
 
 ## Use (in general)
 ```c
