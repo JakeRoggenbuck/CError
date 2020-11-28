@@ -8,21 +8,30 @@ class File:
         self.filename = filename
         self.compiler = compiler
 
-    def run(self):
+    def errorsize(self) -> int:
+        """Get the size of an error from compiling"""
         try:
             check_output([self.compiler, self.filename], stderr=STDOUT)
         except CalledProcessError as e:
             return len(e.output.decode("utf-8"))
 
-    def size(self):
+    def filesize(self) -> int:
+        """Get the filesize"""
         length = check_output(f"cat {self.filename}", shell=True)
         return len(length.decode("utf-8"))
 
+    def ratio(self) -> int:
+        return self.errorsize() / self.filesize()
 
-if __name__ == "__main__":
+
+def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", help="Compiler name")
     parser.add_argument("-f", help="File name")
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
     test = File(args.f, args.c)
-    print(test.run() / test.size())
+    print("Score:", test.ratio())
