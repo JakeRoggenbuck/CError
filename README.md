@@ -6,6 +6,8 @@ Some people try to get the largest error with the smallest file, this script giv
 ```c
 #include __FILE__
 ```
+credit: [@adamhutchings](https://github.com/adamhutchings) for finding this
+
 The sample file is above, this is a small amount of source but produces a large error.
 This would get a really good score because of that ratio of code to error.
 
