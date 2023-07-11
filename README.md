@@ -12,6 +12,10 @@ The sample file is above, this is a small amount of source but produces a large 
 This would get a really good score because of that ratio of code to error.
 
 ## Use (the script)
-`./cerror -f main.c -c g++`
+```
+./cerror -f main.c -c g++
+```
 
-./cerror -f `filename` -c `compiler name`
+```
+./cerror -f <filename> -c <compiler name>
+```
